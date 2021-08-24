@@ -5837,11 +5837,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\fcb\\Downloads\\FetchRequests\\FetchRequests\\FetchRequests\\FetchRequests.csproj",
+      "projectUniqueName": "C:\\Users\\fcb\\Desktop\\Worker-requests\\worker-requests\\FetchRequests\\FetchRequests.csproj",
       "projectName": "FetchRequests",
-      "projectPath": "C:\\Users\\fcb\\Downloads\\FetchRequests\\FetchRequests\\FetchRequests\\FetchRequests.csproj",
+      "projectPath": "C:\\Users\\fcb\\Desktop\\Worker-requests\\worker-requests\\FetchRequests\\FetchRequests.csproj",
       "packagesPath": "C:\\Users\\fcb\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\fcb\\Downloads\\FetchRequests\\FetchRequests\\FetchRequests\\obj\\",
+      "outputPath": "C:\\Users\\fcb\\Desktop\\Worker-requests\\worker-requests\\FetchRequests\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "configFilePaths": [

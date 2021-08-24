@@ -20,14 +20,16 @@ namespace FetchRequests {
                         RequestCollection rc;
 
                         rc = proc.GetRequests(10000);
-                        rc.SelectMany(r => r.Url);
-                        Console.WriteLine(rc.SelectMany(r => r.Url));
 
-                        
+                        // Not tested
+                        foreach(var request in rc){
 
+                            if (request.Url.ToLower().Contains("/servicecenter")) {
 
+                                CmdHelper.RunCommand(@"\OSDiagTool\OSDiagTool.exe RunCmdLine"); // Get thread dumps; Configuration file must be set for thread dumps only
+                            }
 
-                        Console.WriteLine(proc.GetRequests(1000));
+                        }                    
 
                         Console.ReadLine();
 
