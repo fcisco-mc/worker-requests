@@ -12,7 +12,28 @@ namespace FetchRequests {
 
         static void Main(string[] args) {
 
-            using (ServerManager manager = new ServerManager()) {
+            // args[0] Request URL to catch. Multiple URLs must be separated by pipe |
+            // args[1] Execution time threshold in seconds - integer
+            // args[2] Rounds to execute - integer
+
+            if (args.Length.Equals(0)) {
+
+                // implement help section with examples
+                Console.WriteLine("No inputs provided. Run FetchRequests.exe help for more information or read the README");
+
+            } else {
+
+                // implement input validations
+
+
+
+
+            }
+
+
+
+            // Move to the conditions above
+                using (ServerManager manager = new ServerManager()) {
 
                 foreach (WorkerProcess proc in manager.WorkerProcesses) {
 
@@ -24,7 +45,6 @@ namespace FetchRequests {
 
                         rc = proc.GetRequests(1000);
 
-                        // Not tested
                         foreach(var request in rc){
 
                             if (request.Url.ToLower().Contains("/servicecenter")) {
