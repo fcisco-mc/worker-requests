@@ -16,23 +16,42 @@ namespace FetchRequests {
             // args[1] Execution time threshold in seconds - integer
             // args[2] Rounds to execute - integer
 
-            if (args.Length.Equals(0)) {
+            string urls;
+            int execTime, rounds;
+
+            if (args.Length.Equals(0) || args[1].Length.Equals(0)) {
 
                 // implement help section with examples
-                Console.WriteLine("No inputs provided. Run FetchRequests.exe help for more information or read the README");
+                Console.WriteLine("Invalid arguments. Run FetchRequests.exe help for more information or read the README");
 
             } else {
 
-                // implement input validations
+                // input validations
+                try {
 
+                    urls = args[0].Trim().ToString();
+                    execTime = Convert.ToInt32(args[1]);
 
+                    if (args[2].Length.Equals(0)) {
 
+                        rounds = 1; // default rounds - single
+
+                    } else {
+
+                        rounds = Convert.ToInt32(args[2]);
+                    }
+
+                } catch (Exception e) {
+
+                    Console.WriteLine("Invalid arguments. Run FetchRequests.exe help for more information or read the README");
+                    Console.ReadLine();
+                    return;
+
+                }
 
             }
 
-
-
-            // Move to the conditions above
+            // implement program
                 using (ServerManager manager = new ServerManager()) {
 
                 foreach (WorkerProcess proc in manager.WorkerProcesses) {
