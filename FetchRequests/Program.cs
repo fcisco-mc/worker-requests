@@ -21,6 +21,7 @@ namespace FetchRequests {
 
             string rawUrls;
             int execTime, rounds, sleepTime, currentRound;
+            bool caughtRequests;
 
             if (args.Length.Equals(0) || args[1].Length.Equals(0)) {
 
@@ -35,7 +36,7 @@ namespace FetchRequests {
                 try {
 
                     rawUrls = args[0].Trim().ToString();
-                    execTime = Convert.ToInt32(args[1]);
+                    execTime = Convert.ToInt32(args[1]) * 1000;
 
                     if (args[2].Length.Equals(0)) {
 
@@ -48,11 +49,11 @@ namespace FetchRequests {
 
                     if (args[3].Length.Equals(0)) {
 
-                        sleepTime = 60; // default sleep time - 60 seconds
+                        sleepTime = 60 * 1000; // default sleep time - 60 seconds
 
                     } else {
 
-                        sleepTime = Convert.ToInt32(args[3]);
+                        sleepTime = Convert.ToInt32(args[3]) * 1000;
 
                     }
 
@@ -81,41 +82,48 @@ namespace FetchRequests {
                 currentRound = 0;
                 while(currentRound < rounds) {
 
+                    caughtRequests = false;
+
                     foreach (WorkerProcess proc in manager.WorkerProcesses) {
 
-                        List<string> requests = new List<string>();
-                        RequestCollection rc;
+                        if(!(proc.AppPoolName.ToLower().Equals("outsystemsserverapiapppool") || proc.AppPoolName.ToLower().Equals("outsystemsserveridentityapppool"))) {
 
-                        rc = proc.GetRequests(execTime);
+                            List<string> requests = new List<string>();
+                            RequestCollection rc;
 
-                        foreach (string url in parsedUrls) {
+                            rc = proc.GetRequests(execTime);
 
-                            foreach (var request in rc) {
+                            foreach (string url in parsedUrls) {
 
-                                if (request.Url.ToLower().Contains(url)) {
+                                foreach (var request in rc) {
 
-                                    Logger.TraceLog("Caught request: " + request.Url + "; " + "Execution time elapsed: " + request.TimeElapsed);
-                                    Logger.TraceLog("Starting to catch thread dumps");
-                                    Console.WriteLine("Starting to catch thread dumps");
+                                    if (request.Url.ToLower().Contains(url)) {
 
-                                    CmdHelper.RunCommand(Path.Combine(_currDir, @"OSDiagTool\OSDiagTool.exe RunCmdLine")); // Get thread dumps; Configuration file must be set for thread dumps only
+                                        Logger.TraceLog("Caught request: " + request.Url + "; " + "Execution time elapsed: " + request.TimeElapsed);
+                                        Logger.TraceLog("Starting to catch thread dumps");
+                                        Console.WriteLine("Starting to catch thread dumps");
 
-                                    Logger.TraceLog("Finished catching thread dumps");
-                                    Console.WriteLine("Finished catching thread dumps");
+                                        caughtRequests = true;
+                                        CmdHelper.RunCommand(Path.Combine(_currDir, @"OSDiagTool\OSDiagTool.exe RunCmdLine")); // Get thread dumps; Configuration file must be set for thread dumps only
 
-                                    currentRound++;
-                                    Thread.Sleep(sleepTime);
+                                        Logger.TraceLog("Finished catching thread dumps");
+                                        Console.WriteLine("Finished catching thread dumps");
 
+                                        Thread.Sleep(sleepTime);
+                                        currentRound++;
+                                        break;
+
+                                    }
                                 }
 
-                                break;
+                                if(caughtRequests) break;
 
                             }
-
-                            break;
-
                         }
-                    }
+
+                        if (caughtRequests) break;
+
+                    } 
                 }
 
                 Logger.TraceLog("Exiting console app");
