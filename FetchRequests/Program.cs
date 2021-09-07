@@ -1,16 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using Microsoft.Web.Administration;
 using System.IO;
+using System.Reflection;
+
+
 namespace FetchRequests {
     class Program {
 
-        private static string _currDir = AppDomain.CurrentDomain.BaseDirectory;
+        private static string _currDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
-        // needs testing
+        // needs testing with multiple urls and no urls
 
         static void Main(string[] args) {
 
@@ -70,6 +72,7 @@ namespace FetchRequests {
 
             // inputs processing
             List<string> parsedUrls = new List<string>();
+            string command;
 
             parsedUrls = rawUrls.ToLower().Split('|').ToList();
 
@@ -104,13 +107,18 @@ namespace FetchRequests {
                                         Console.WriteLine("Starting to catch thread dumps");
 
                                         caughtRequests = true;
-                                        CmdHelper.RunCommand(Path.Combine(_currDir, @"OSDiagTool\OSDiagTool.exe RunCmdLine")); // Get thread dumps; Configuration file must be set for thread dumps only
+                                        command = Path.Combine(_currDir, Path.Combine("OSDiagTool", "OSDiagTool.exe"));
+                                        command = "\"" + command + "\"" + " RunCmdLine";
+
+                                        Logger.TraceLog("Executing OSDiagTool on: " + command);
+
+                                        CmdHelper.RunCommand(command); // Get thread dumps; Configuration file must be set for thread dumps only
 
                                         Logger.TraceLog("Finished catching thread dumps");
                                         Console.WriteLine("Finished catching thread dumps");
 
-                                        Thread.Sleep(sleepTime);
                                         currentRound++;
+                                        if(!currentRound.Equals(rounds)) Thread.Sleep(sleepTime);
                                         break;
 
                                     }
