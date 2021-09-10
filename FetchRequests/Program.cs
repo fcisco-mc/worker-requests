@@ -73,10 +73,11 @@ namespace FetchRequests {
             // inputs processing
             List<string> parsedUrls = new List<string>();
             string command;
+            bool sleep = false;
 
             parsedUrls = rawUrls.ToLower().Split('|').ToList();
 
-            Logger.TraceLog("Urls: " + rawUrls + "; " + "Execution time thresold: " + execTime + "; " + "Rounds: " + rounds + "; " + "Sleep time: " + sleepTime + ";");
+            Logger.TraceLog("Urls: " + rawUrls + "; " + "Execution time thresold: " + execTime + "ms ; " + "Rounds: " + rounds + "; " + "Sleep time: " + sleepTime + "ms ;");
 
 
             // program
@@ -86,6 +87,7 @@ namespace FetchRequests {
                 while(currentRound < rounds) {
 
                     caughtRequests = false;
+                    if (sleep) Thread.Sleep(sleepTime);
 
                     foreach (WorkerProcess proc in manager.WorkerProcesses) {
 
@@ -103,8 +105,8 @@ namespace FetchRequests {
                                     if (request.Url.ToLower().Contains(url)) {
 
                                         Logger.TraceLog("Caught request: " + request.Url + "; " + "Execution time elapsed: " + request.TimeElapsed);
-                                        Logger.TraceLog("Starting to catch thread dumps");
-                                        Console.WriteLine("Starting to catch thread dumps");
+                                        Logger.TraceLog("Starting to catch thread dumps. Round: " + currentRound);
+                                        Console.WriteLine("Starting to catch thread dumps. Round: " + currentRound);
 
                                         caughtRequests = true;
                                         command = Path.Combine(_currDir, Path.Combine("OSDiagTool", "OSDiagTool.exe"));
@@ -114,11 +116,15 @@ namespace FetchRequests {
 
                                         CmdHelper.RunCommand(command); // Get thread dumps; Configuration file must be set for thread dumps only
 
-                                        Logger.TraceLog("Finished catching thread dumps");
-                                        Console.WriteLine("Finished catching thread dumps");
+                                        Logger.TraceLog("Finished catching thread dumps. Round: " + currentRound);
+                                        Console.WriteLine("Finished catching thread dumps. Round: " + currentRound);
 
                                         currentRound++;
-                                        if(!currentRound.Equals(rounds)) Thread.Sleep(sleepTime);
+                                        if (!currentRound.Equals(rounds)) {
+                                         
+                                            Thread.Sleep(sleepTime); // Sleep while round limit is not reached
+                                            sleep = false;
+                                        }
                                         break;
 
                                     }
@@ -131,7 +137,10 @@ namespace FetchRequests {
 
                         if (caughtRequests) break;
 
-                    } 
+                    }
+
+                    sleep = true;
+
                 }
 
                 Logger.TraceLog("Exiting console app");
