@@ -23,7 +23,7 @@ namespace FetchRequests {
 
             string rawUrls;
             int execTime, rounds, sleepTime, currentRound;
-            bool caughtRequests;
+            bool caughtRequests, monitorAll = false;
 
             if (args.Length.Equals(0) || args[1].Length.Equals(0)) {
 
@@ -38,6 +38,7 @@ namespace FetchRequests {
                 try {
 
                     rawUrls = args[0].Trim().ToString();
+                    if (rawUrls.Equals("All")) monitorAll = true;
                     execTime = Convert.ToInt32(args[1]) * 1000;
 
                     if (args[2].Length.Equals(0)) {
@@ -102,7 +103,7 @@ namespace FetchRequests {
 
                                 foreach (var request in rc) {
 
-                                    if (request.Url.ToLower().Contains(url)) {
+                                    if (request.Url.ToLower().Contains(url) || monitorAll) {
 
                                         Logger.TraceLog("Caught request: " + request.Url + "; " + "Execution time elapsed: " + request.TimeElapsed);
                                         Logger.TraceLog("Starting to catch thread dumps. Round: " + currentRound);
@@ -120,11 +121,6 @@ namespace FetchRequests {
                                         Console.WriteLine("Finished catching thread dumps. Round: " + currentRound);
 
                                         currentRound++;
-                                        if (!currentRound.Equals(rounds)) {
-                                         
-                                            Thread.Sleep(sleepTime); // Sleep while round limit is not reached
-                                            sleep = false;
-                                        }
                                         break;
 
                                     }
