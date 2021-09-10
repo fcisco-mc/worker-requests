@@ -25,10 +25,10 @@ namespace FetchRequests {
             int execTime, rounds, sleepTime, currentRound;
             bool caughtRequests, monitorAll = false;
 
-            if (args.Length.Equals(0) || args[1].Length.Equals(0)) {
+            if (args.Length.Equals(0) || args[1].Length.Equals(0) || args[2].Length.Equals(0)) {
 
                 // implement help section with examples
-                Console.WriteLine("Invalid arguments. Run FetchRequests.exe help for more information or read the README");
+                Console.WriteLine("Invalid arguments. Read the README to see a working example");
                 Console.ReadLine();
                 return;
 
@@ -52,7 +52,7 @@ namespace FetchRequests {
 
                     if (args[3].Length.Equals(0)) {
 
-                        sleepTime = 60 * 1000; // default sleep time - 60 seconds
+                        sleepTime = 600 * 1000; // default sleep time - 600 seconds
 
                     } else {
 
@@ -62,7 +62,7 @@ namespace FetchRequests {
 
                 } catch (Exception e) {
 
-                    Console.WriteLine("Invalid arguments. Run FetchRequests.exe help for more information or read the README");
+                    Console.WriteLine("Invalid arguments. Read the README to see a working example");
                     Console.ReadLine();
                     return;
 
@@ -84,6 +84,7 @@ namespace FetchRequests {
             // program
                 using (ServerManager manager = new ServerManager()) {
 
+                Console.WriteLine("Monitorization started");
                 currentRound = 0;
                 while(currentRound < rounds) {
 
