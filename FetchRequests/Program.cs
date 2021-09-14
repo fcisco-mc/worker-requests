@@ -12,8 +12,6 @@ namespace FetchRequests {
 
         private static string _currDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
-        // needs testing with multiple urls and no urls
-
         static void Main(string[] args) {
 
             // args[0] Request URL to catch. Multiple URLs must be separated by pipe | "All" to monitor all requests
@@ -25,50 +23,62 @@ namespace FetchRequests {
             int execTime, rounds, sleepTime, currentRound;
             bool caughtRequests, monitorAll = false;
 
-            if (args.Length.Equals(0) || args[1].Length.Equals(0) || args[2].Length.Equals(0)) {
+            try {
 
-                // implement help section with examples
-                Console.WriteLine("Invalid arguments. Read the README to see a working example");
-                Console.ReadLine();
-                return;
-
-            } else {
-
-                // input validations
-                try {
-
-                    rawUrls = args[0].Trim().ToString();
-                    if (rawUrls.Equals("All")) monitorAll = true;
-                    execTime = Convert.ToInt32(args[1]) * 1000;
-
-                    if (args[2].Length.Equals(0)) {
-
-                        rounds = 1; // default rounds - single
-
-                    } else {
-
-                        rounds = Convert.ToInt32(args[2]);
-                    }
-
-                    if (args[3].Length.Equals(0)) {
-
-                        sleepTime = 600 * 1000; // default sleep time - 600 seconds
-
-                    } else {
-
-                        sleepTime = Convert.ToInt32(args[3]) * 1000;
-
-                    }
-
-                } catch (Exception e) {
+                if (args.Length.Equals(0) || args[1].Length.Equals(0) || args[2].Length.Equals(0)) {
 
                     Console.WriteLine("Invalid arguments. Read the README to see a working example");
                     Console.ReadLine();
                     return;
 
+                } else {
+
+                    // input validations
+                    try {
+
+                        rawUrls = args[0].Trim().ToString();
+                        if (rawUrls.Equals("All")) monitorAll = true;
+                        execTime = Convert.ToInt32(args[1]) * 1000;
+
+                        if (args[2].Length.Equals(0)) {
+
+                            rounds = 1; // default rounds - single
+
+                        } else {
+
+                            rounds = Convert.ToInt32(args[2]);
+                        }
+
+                        if (args[3].Length.Equals(0)) {
+
+                            sleepTime = 600 * 1000; // default sleep time - 600 seconds
+
+                        } else {
+
+                            sleepTime = Convert.ToInt32(args[3]) * 1000;
+
+                        }
+
+                    } catch (Exception e) {
+
+                        Console.WriteLine(" Unable to validate arguments. Read the README to see a working example");
+                        Console.ReadLine();
+                        return;
+
+                    }
+
                 }
 
+            } catch (Exception e) {
+
+                Console.WriteLine("Invalid arguments. Read the README to see a working example");
+                Console.ReadLine();
+                
+                return;
+
             }
+
+            
 
 
             // inputs processing
