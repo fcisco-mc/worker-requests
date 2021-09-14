@@ -114,7 +114,7 @@ namespace FetchRequests {
 
                                 foreach (var request in rc) {
 
-                                    if (request.Url.ToLower().Contains(url) || monitorAll) {
+                                    if (request.Url.ToLower().Contains(url) || (monitorAll & !request.Url.Length.Equals(0))) {
 
                                         Logger.TraceLog("Caught request: " + request.Url + "; " + "Execution time elapsed: " + request.TimeElapsed);
                                         Logger.TraceLog("Starting to catch thread dumps. Round: " + currentRound);
