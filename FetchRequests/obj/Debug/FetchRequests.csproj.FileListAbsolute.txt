@@ -39,6 +39,7 @@ C:\Users\fcb\Desktop\Worker-requests\worker-requests\FetchRequests\bin\Debug\Sys
 C:\Users\fcb\Desktop\Worker-requests\worker-requests\FetchRequests\bin\Debug\System.Reflection.TypeExtensions.dll
 C:\Users\fcb\Desktop\Worker-requests\worker-requests\FetchRequests\bin\Debug\System.Security.Principal.Windows.dll
 C:\Users\fcb\Desktop\Worker-requests\worker-requests\FetchRequests\bin\Debug\System.ServiceProcess.ServiceController.dll
-C:\Users\fcb\Desktop\Worker-requests\worker-requests\FetchRequests\obj\Debug\FetchRequests.csprojAssemblyReference.cache
 C:\Users\fcb\Desktop\Worker-requests\worker-requests\FetchRequests\obj\Debug\FetchRequests.exe.config
 C:\Users\fcb\Desktop\Worker-requests\worker-requests\FetchRequests\obj\Debug\FetchRequests.csproj.CopyComplete
+C:\Users\fcb\Desktop\worker-requests\worker-requests\FetchRequests\obj\Debug\FetchRequests.csproj.AssemblyReference.cache
+C:\Users\fcb\Desktop\worker-requests\worker-requests\FetchRequests\obj\Debug\FetchRequests.csproj.CoreCompileInputs.cache

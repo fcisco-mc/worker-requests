@@ -2,7 +2,7 @@
 using System.Text;
 using System.Diagnostics;
 
-namespace FetchRequests {
+namespace RequestMonitor {
     class CmdHelper {
 
         public static void RunCommand(string command, bool isHidden = true) {
@@ -30,7 +30,7 @@ namespace FetchRequests {
                 process.WaitForExit();
                 process.Close();
 
-            } catch (Exception e) {
+            } catch (Exception) {
 
             }
 
