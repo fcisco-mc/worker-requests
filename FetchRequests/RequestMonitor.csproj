@@ -63,12 +63,6 @@
     <None Include="OSDiagTool\OSDiagTool.exe.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="OSDiagTool\OSDiagTool.vshost.exe.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="OSDiagTool\OSDiagTool.vshost.exe.manifest">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.Web.Administration">
@@ -76,28 +70,76 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="OSDiagTool\ICSharpCode.SharpZipLib.dll">
+    <Content Include="OSDiagTool\lib\ICSharpCode.SharpZipLib.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="OSDiagTool\Microsoft.Diagnostics.Runtime.dll">
+    <Content Include="OSDiagTool\lib\Microsoft.Bcl.AsyncInterfaces.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="OSDiagTool\Microsoft.Diagnostics.Runtime.pdb">
+    <Content Include="OSDiagTool\lib\Microsoft.Bcl.AsyncInterfaces.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="OSDiagTool\Microsoft.Diagnostics.Runtime.xml">
+    <Content Include="OSDiagTool\lib\Microsoft.Diagnostics.Runtime.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="OSDiagTool\Oracle.ManagedDataAccess.dll">
+    <Content Include="OSDiagTool\lib\Microsoft.Diagnostics.Runtime.pdb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="OSDiagTool\lib\Microsoft.Diagnostics.Runtime.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="OSDiagTool\lib\Oracle.ManagedDataAccess.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="OSDiagTool\lib\OSDiagTool.pdb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="OSDiagTool\lib\System.Buffers.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="OSDiagTool\lib\System.Buffers.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="OSDiagTool\lib\System.Memory.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="OSDiagTool\lib\System.Memory.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="OSDiagTool\lib\System.Numerics.Vectors.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="OSDiagTool\lib\System.Numerics.Vectors.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="OSDiagTool\lib\System.Runtime.CompilerServices.Unsafe.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="OSDiagTool\lib\System.Runtime.CompilerServices.Unsafe.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="OSDiagTool\lib\System.Text.Encodings.Web.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="OSDiagTool\lib\System.Text.Encodings.Web.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="OSDiagTool\lib\System.Text.Json.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="OSDiagTool\lib\System.Text.Json.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="OSDiagTool\lib\System.Threading.Tasks.Extensions.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="OSDiagTool\lib\System.Threading.Tasks.Extensions.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="OSDiagTool\lib\System.ValueTuple.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="OSDiagTool\OSDiagTool.exe">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="OSDiagTool\OSDiagTool.pdb">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="OSDiagTool\OSDiagTool.vshost.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="OSDiagTool\procdump64.exe">
