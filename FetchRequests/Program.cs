@@ -92,7 +92,7 @@ namespace RequestMonitor {
                     {
                         if (!sw.IsRunning) { sw.Start(); }
 
-                        Logger.TraceLog("CPU Counter value: " + cpuCounterVal + ". Elapsed time: " + sw.ElapsedMilliseconds/1000 + "s");
+                        //Logger.TraceLog("CPU Counter value: " + cpuCounterVal + ". Elapsed time: " + sw.ElapsedMilliseconds/1000 + "s");
                         if (sw.ElapsedMilliseconds/1000 >= timeBaseSec)
                         {
                             caughtRequests = true;
