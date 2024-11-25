@@ -23,9 +23,11 @@ minimum CPU used or constant CPU above a defined base level.
 |                            cpuBase and cpuMin                                                                               |
 |_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _|
  _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
-|** -m cpuBase options																									      |
+|** -m cpuBase options													      |
 |  -b, --cpuTimeBase         (Default: 300) CPU Time base in seconds - use with monitor option cpuBase when monitoring for    |
-|							 constant CPU usage above cpuThreshold for this time period										  |
+|							 constant CPU usage above cpuThreshold for this time period	      |
+| Note: cpuBase will capture a thread dump if the CPU stays above the defined threshold (-c) for the time		      |
+| that is defined in cpuTimeBase (-b)											      |
 |_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _|
 
   --help                    Display this help screen.
