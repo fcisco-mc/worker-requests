@@ -130,7 +130,15 @@ namespace RequestMonitor {
             // inputs processing
             List<string> parsedUrls = new List<string>();
 
+            //Logger.TraceLog("[DEBUG] Raw Urls: " + rawUrls);
+
+            if (rawUrls.ToLower().Equals("all")) monitorAll = true;
+            //Logger.TraceLog("[DEBUG] Monitor All set to True");
+            //Logger.TraceLog("[DEBUG] MonitorAll: " + monitorAll);
+            
             parsedUrls = rawUrls.ToLower().Split('|').ToList();
+            //Logger.TraceLog("[DEBUG] Parsed URls: " + parsedUrls);
+            
 
             Logger.TraceLog("Urls: " + rawUrls + "; " + "Execution time thresold: " + execTime + "ms ; " + "Rounds: " + rounds + "; " + "Sleep time: " + sleepTime + "ms ;");
 
@@ -141,24 +149,33 @@ namespace RequestMonitor {
                 currentRound = 0;
                 while (currentRound < rounds)
                 {
-
+                    //Logger.TraceLog("[DEBUG] Current Round: " + currentRound);
+                    //Logger.TraceLog("[DEBUG] Total Rounds: " + rounds);
                     caughtRequests = false;
+
+                    //Logger.TraceLog("[DEBUG] Sleep Time: " + sleepTime);
                     if (sleep) Thread.Sleep(sleepTime);
+                    //Logger.TraceLog("[DEBUG] Finished sleeping");
 
                     foreach (WorkerProcess proc in manager.WorkerProcesses)
                     {
+                        //Logger.TraceLog("[DEBUG] Process app pool: " + proc.AppPoolName);
                         if (!(proc.AppPoolName.ToLower().Equals("outsystemsserverapiapppool") || proc.AppPoolName.ToLower().Equals("outsystemsserveridentityapppool")))
                         {
-
+                            //Logger.TraceLog("[DEBUG] Inspecting requests of Process app pool: " + proc.AppPoolName);
                             List<string> requests = new List<string>();
                             RequestCollection rc;
 
+                            //Logger.TraceLog("[DEBUG] Checking requests with execution time over " + execTime + "ms");
                             rc = proc.GetRequests(execTime);
 
                             foreach (string url in parsedUrls)
                             {
+                                //Logger.TraceLog("[DEBUG] Url: " + url);
                                 foreach (var request in rc)
                                 {
+                                    //Logger.TraceLog("[DEBUG] request: " + request);
+                                    //Logger.TraceLog("[DEBUG] MonitorAll: " + monitorAll);
                                     if (request.Url.ToLower().Contains(url) || (monitorAll & !request.Url.Length.Equals(0)))
                                     {
 
